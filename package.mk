@@ -8,9 +8,9 @@ PKG_ARCH="any"
 PKG_LICENSE="Proprietary"
 PKG_SITE="https://github.com/bmc0/dsp"
 PKG_URL="https://github.com/bmc0/dsp/archive/refs/tags/v${PKG_VERSION}.tar.gz"
+PKG_SHA256="0e98b9aea613b111c9d7cc2b9a0ce14c2b3ba4e90861b3cdcfcb8ec1ebfcab93"
 PKG_MAINTAINER="chipfunk" # Full name or forum/GitHub nickname, if you want to be identified as the addon maintainer
-# PKG_SOURCE_DIR="${PKG_NAME}-${PKG_VERSION}"
-PKG_DEPENDS_TARGET="alsa-lib fftw3 fftw3f pulseaudio libsndfile"
+PKG_DEPENDS_TARGET="alsa-lib fftw3 fftw3f pulseaudio libsndfile zita-convolver ffmpeg"
 PKG_SECTION="service/system"
 PKG_SHORTDESC="bmc0 DSP"
 PKG_LONGDESC="bmc0 DSP in one or more dimensions."
@@ -19,11 +19,12 @@ PKG_TOOLCHAIN="configure" # or one of auto, meson, cmake, cmake-make, configure,
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="bmc0 - DSP"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REQUIRES="service.system.fftw3:11.0.0.100 service.system.fftw3f:11.0.0.100"
+PKG_ADDON_REQUIRES="service.system.fftw3:11.0.0.100 service.system.fftw3f:11.0.0.100 service.system.zita-convolver:11.0.0.100"
 
 configure_target() {
+export
   cd ${PKG_BUILD}
-  ./configure --disable-ffmpeg --disable-zita-convolver --disable-ao --disable-mad
+  ./configure --disable-ao --disable-mad
 }
 
 make_target() {
