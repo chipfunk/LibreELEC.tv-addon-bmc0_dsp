@@ -1,0 +1,12 @@
+[Unit]
+Description=bmc0 - DSP
+After=pulseaudio.target
+
+[Service]
+ExecStart=/storage/.kodi/addons/service.system.dsp/usr/bin/dsp -t pulse -r 44100 -c 2 default
+Restart=always
+RestartSec=2
+Environment="LD_LIBRARY_PATH=/usr/lib:/usr/lib/pulseaudio:/storage/.kodi/addons/service.system.fftw3:/storage/.kodi/addons/service.system.fftw3f"
+
+[Install]
+WantedBy=kodi.target
